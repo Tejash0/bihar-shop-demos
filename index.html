@@ -3,261 +3,249 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bihar Shop Demos - two ideas, four websites</title>
-  <meta name="description" content="Four free demo shop websites for two side-hustle ideas in Bihar, with running costs from 100 to 10,000 customers.">
+  <title>Chamak - Chamka do. Home cleaning and car care concentrates</title>
+  <meta name="description" content="Concentrated home cleaning and car care, made in Patna. One small bottle plus water makes up to 25 litres. Order for delivery in Patna, or buy on Amazon anywhere in India.">
+  <meta name="theme-color" content="#FF6B1A">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="shared/base.css?v=202610241353">
-  <link rel="stylesheet" href="pitch.css?v=202610241353">
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Familjen+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared/base.css?v=202610241400">
+  <link rel="stylesheet" href="style.css?v=202610241400">
 </head>
 <body>
-  <header class="intro">
-    <h1>Two business ideas.<br>Four shops you can click through.</h1>
-    <p class="lede">In our part of Bihar, quick-delivery apps like Blinkit and Zepto aren’t here yet. These demos show what our own local shops could look like, and the numbers below show what they cost to run. Everything here is hosted free.</p>
-    <nav class="jump" aria-label="On this page">
-      <a href="#demos">The 4 demos</a>
-      <a href="#costs">What it costs</a>
-      <a href="#platform">Why our own website</a>
-      <a href="#plan">Suggested plan</a>
-      <a href="#make">Making it ourselves</a>
-      <a href="#rules">Licences</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="spark" viewBox="0 0 24 24"><path d="M12 0C12.9 7.1 16.9 11.1 24 12C16.9 12.9 12.9 16.9 12 24C11.1 16.9 7.1 12.9 0 12C7.1 11.1 11.1 7.1 12 0Z"/></symbol>
+  </svg>
+  <a class="skip" href="#shop">Skip to products</a>
+
+  <div class="offer" aria-label="Offers">
+    <div class="offer-track">
+      <span>One bottle makes up to 25 litres</span><span>Chhath kit ₹599, save ₹115</span><span>Build a kit, get up to 20% off</span><span>Free delivery above ₹249 in Patna</span><span>Outside Patna? Buy on Amazon</span>
+      <span aria-hidden="true">One bottle makes up to 25 litres</span><span aria-hidden="true">Chhath kit ₹599, save ₹115</span><span aria-hidden="true">Build a kit, get up to 20% off</span><span aria-hidden="true">Free delivery above ₹249 in Patna</span><span aria-hidden="true">Outside Patna? Buy on Amazon</span>
+    </div>
+  </div>
+
+  <header class="top">
+    <a class="logo" href="index.html" aria-label="Chamak home">chamak<svg width="20" height="20" class="logo-spark" aria-hidden="true"><use href="#spark"/></svg></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#shop">Shop</a>
+      <a href="#kits">Kits</a>
+      <a href="#build">Build a kit</a>
+      <a href="#how">How it works</a>
+      <a href="#bulk">Bulk</a>
     </nav>
+    <button class="bag" type="button" data-open-cart aria-label="Open bag">
+      <svg width="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l1 13H5L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      <span class="bag-count" data-cart-count hidden>0</span>
+    </button>
   </header>
 
   <main>
-    <section id="demos" class="demos" aria-labelledby="demos-title">
-      <h2 id="demos-title">The demos</h2>
-      <p class="sec-lede">Open any shop on your phone. You can add products, use the bag and place a pretend order. Nothing is charged and nothing is delivered.</p>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Chamka<br>do.</h1>
+        <p class="hero-lede">Ghar se garage tak. Concentrated cleaners for your home and your gaadi: one small bottle plus tap water makes up to 25 litres.</p>
+        <p class="hero-where">Order for delivery in Patna, or buy on Amazon anywhere in India.</p>
+        <div class="hero-cats">
+          <a class="cat-jump" href="#shop" data-jump="home">
+            <svg width="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+            Home Cleaning
+          </a>
+          <a class="cat-jump" href="#shop" data-jump="car">
+            <svg width="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16v-4l2.5-5h13L21 12v4z"/><path d="M3 12h18"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/></svg>
+            Auto Car Care
+          </a>
+        </div>
+      </div>
 
-      <h3 class="idea">Idea 1 · Desi herbs for Gen Z</h3>
-      <p class="idea-why">Ashwagandha, brahmi, sattu and triphala, sold as gummies, shakes and drops with young, modern branding. Not a “totka”.</p>
-      <ul class="demo-list">
-        <li class="demo" style="--c1:#FFD23F;--c2:#0F3D2E">
-          <a href="sites/desidose/index.html">
-            <div class="demo-art" data-art='{"shape":"jar","body":"#FF7EB0","accent":"#FFE27A","ink":"#0F3D2E","lid":"#0F3D2E","label":"ASHWA","sub":"calm gummies"}'></div>
-            <div class="demo-text">
-              <h4>DesiDose</h4>
-              <p>Bold and short, like Yoga Bar. Shop by mood, ₹20 trial sachets, a Bihar-special sattu protein shake.</p>
-              <span class="go">Open demo</span>
-            </div>
-          </a>
+      <div class="hero-stage" aria-hidden="true">
+        <svg width="20" height="20" class="spark s1"><use href="#spark"/></svg>
+        <svg width="20" height="20" class="spark s2"><use href="#spark"/></svg>
+        <svg width="20" height="20" class="spark s3"><use href="#spark"/></svg>
+        <div class="stage-pack sp-back-l" data-pack="h-floor"></div>
+        <div class="stage-pack sp-back-r" data-pack="c-shampoo"></div>
+        <div class="stage-pack sp-main" data-pack="kit-chhath"></div>
+        <div class="stage-pack sp-front" data-pack="c-waterless"></div>
+        <div class="sticker"><span>makes up to</span><b>25 L</b></div>
+      </div>
+
+      <article class="hero-kit" aria-labelledby="hk-title">
+        <h2 id="hk-title">Chhath &amp; Diwali Deep-Clean Kit</h2>
+        <p class="hk-line"></p>
+        <ul class="hk-list"></ul>
+        <div class="hk-buy">
+          <p class="price"></p>
+          <div class="buy-pair">
+            <div data-buy="kit-chhath"></div>
+            <a class="amz" data-amazon="kit-chhath" target="_blank" rel="noopener">Buy on Amazon</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="shop" id="shop" aria-labelledby="shop-title">
+      <div class="sec-head">
+        <h2 id="shop-title">Ek bottle,<br>bahut safai.</h2>
+        <p>Every bottle tells you how much it makes and what a litre costs you. Add for pay-on-delivery in Patna, or buy on Amazon.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Category"></div>
+      <div class="panels"></div>
+    </section>
+
+    <section class="kits" id="kits" aria-labelledby="kits-title">
+      <div class="sec-head">
+        <h2 id="kits-title">Ek kaam,<br>ek kit.</h2>
+        <p>Bottles that go together, priced below buying each one separately.</p>
+      </div>
+      <ul class="kit-grid"></ul>
+    </section>
+
+    <section class="build" id="build" aria-labelledby="build-title">
+      <div class="build-head">
+        <h2 id="build-title">Apna kit<br>banao.</h2>
+        <p>Mix ghar and gaadi in one box. The more you add, the more you save.</p>
+        <ol class="tier-key">
+          <li><b>4+</b> items <span>10% off</span></li>
+          <li><b>6+</b> items <span>15% off</span></li>
+          <li><b>8+</b> items <span>20% off</span></li>
+        </ol>
+      </div>
+      <div class="build-body">
+        <div class="pick-groups"></div>
+        <aside class="tray" aria-labelledby="tray-title">
+          <h3 id="tray-title">Your kit</h3>
+          <ul class="tray-slots" aria-live="polite"></ul>
+          <div class="meter" aria-hidden="true">
+            <div class="meter-fill"></div>
+            <span class="meter-notch" style="--at:4" data-label="10%"></span>
+            <span class="meter-notch" style="--at:6" data-label="15%"></span>
+            <span class="meter-notch" style="--at:8" data-label="20%"></span>
+          </div>
+          <p class="tray-hint" aria-live="polite"></p>
+          <p class="tray-price"></p>
+          <button class="tray-add" type="button" disabled>Add kit to bag</button>
+          <button class="tray-clear" type="button" hidden>Start over</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="how" id="how" aria-labelledby="how-title">
+      <div class="how-head">
+        <h2 id="how-title">Paani aapka. Chamak humari.</h2>
+        <p>Most of a ready-made cleaner is water you pay for and carry home. A concentrate is the cleaning part only. You add the water from your own tap.</p>
+      </div>
+      <div class="how-body">
+        <div class="how-sum" aria-label="200 ml of Perfumed Floor Cleaner plus 9.8 litres of water makes 10 litres">
+          <div class="how-term">
+            <div class="how-pack" data-pack="h-floor"></div>
+            <p><b>200 ml</b>concentrate</p>
+          </div>
+          <span class="how-op" aria-hidden="true">+</span>
+          <div class="how-term">
+            <svg width="48" class="how-drop" viewBox="0 0 48 60" aria-hidden="true"><path d="M24 2C24 2 4 26 4 39a20 20 0 0 0 40 0C44 26 24 2 24 2Z"/><path class="how-drop-hi" d="M14 40a10 10 0 0 0 8 10"/></svg>
+            <p><b>9.8 L</b>tap water</p>
+          </div>
+          <span class="how-op" aria-hidden="true">=</span>
+          <div class="how-term how-result">
+            <p class="how-big">10 L</p>
+            <p><b>₹149 ÷ 10</b>= ₹15 a litre</p>
+          </div>
+        </div>
+        <ol class="how-steps">
+          <li><b>Pour</b> the amount on the label into an empty bottle or bucket. The cap is marked.</li>
+          <li><b>Top up</b> with tap water and shake. Mix only what you need for a week or two.</li>
+          <li><b>Clean</b> as usual. For tough stains, use a little more concentrate: it then makes less, so the per-litre price goes up.</li>
+        </ol>
+      </div>
+      <p class="how-note">How we work out "per litre": bottle price divided by the litres it makes when mixed as the label says, rounded to the nearest rupee. Ready-to-use items and cloths don’t show a per-litre price.</p>
+    </section>
+
+    <section class="bulk" id="bulk" aria-labelledby="bulk-title">
+      <div class="bulk-copy">
+        <h2 id="bulk-title">Shop, hostel, coaching? Bulk mein lo.</h2>
+        <p>We supply kirana shops, hostels, coaching centres and offices across Patna. Heavy-duty floor concentrate works out to about ₹10 a litre, less at wholesale rates.</p>
+        <ul class="bulk-facts">
+          <li><svg width="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v13H4z"/><path d="M4 7l2-3h12l2 3M9 11h6"/></svg>One 500 ml bottle makes 25 L</li>
+          <li><svg width="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Monthly delivery, same date</li>
+          <li><svg width="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16l-5-3-5 3z"/></svg>GST bill on request</li>
+        </ul>
+      </div>
+      <form class="bulk-form" novalidate>
+        <h3>Get a bulk quote</h3>
+        <label>Business type
+          <select name="type" required>
+            <option value="">Choose one</option>
+            <option>Kirana or general store</option>
+            <option>Hostel or PG</option>
+            <option>Coaching centre</option>
+            <option>Office</option>
+            <option>Hotel or restaurant</option>
+            <option>Car or bike wash centre</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>Roughly how much cleaner a month, once mixed?
+          <select name="qty" required>
+            <option value="">Choose one</option>
+            <option>25-50 litres</option>
+            <option>50-100 litres</option>
+            <option>100-250 litres</option>
+            <option>250+ litres</option>
+          </select>
+        </label>
+        <label>Your name<input name="name" autocomplete="name" required></label>
+        <label>Mobile number<input name="phone" inputmode="numeric" autocomplete="tel" placeholder="10-digit number" required></label>
+        <button type="submit">
+          <svg width="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.1L4 20Z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg>
+          Send on WhatsApp
+        </button>
+        <p class="bulk-note" role="status" aria-live="polite">Opens WhatsApp with your details filled in. We reply within a working day.</p>
+      </form>
+    </section>
+
+    <section class="reviews" id="reviews" aria-labelledby="rev-title">
+      <h2 id="rev-title">Patna ne chamkaya.</h2>
+      <ul class="rev-list">
+        <li class="rev r1">
+          <blockquote>“One 200 ml floor cleaner did our whole Chhath safai, and half the bottle is still left. Jasmine ki khushboo shaam tak rahi.”</blockquote>
+          <p><b>Priya S.</b> · Kankarbagh</p>
         </li>
-        <li class="demo" style="--c1:#1C2B6B;--c2:#F4A42C">
-          <a href="sites/jadilab/index.html">
-            <div class="demo-art" data-art='{"shape":"dropper","body":"#B8651B","accent":"#F4A42C","ink":"#1C2B6B","lid":"#1C2B6B","label":"SHILAJIT","sub":"resin drops"}'></div>
-            <div class="demo-text">
-              <h4>Jadi Lab</h4>
-              <p>“Nani’s herbs, lab-checked.” Full transparency, like The Whole Truth: where each herb comes from and a sample lab report.</p>
-              <span class="go">Open demo</span>
-            </div>
-          </a>
+        <li class="rev r2">
+          <blockquote>“Six classrooms, mopped daily. The heavy-duty concentrate comes to about ₹10 a litre, which is less than the cans we used to buy.”</blockquote>
+          <p><b>Rakesh M.</b> · Coaching owner, Musallahpur</p>
+        </li>
+        <li class="rev r3">
+          <blockquote>“One cap of the car shampoo in a bucket washes my Alto. Ordered it on Amazon from Muzaffarpur.”</blockquote>
+          <p><b>Ankit K.</b> · Muzaffarpur</p>
         </li>
       </ul>
-
-      <h3 class="idea">Idea 2 · Cleaning products, delivered locally</h3>
-      <p class="idea-why">Floor, kitchen, bathroom, laundry, car and bike cleaning. Bought from suppliers and delivered in our own area.</p>
-      <ul class="demo-list">
-        <li class="demo" style="--c1:#1550E6;--c2:#D4F53C">
-          <a href="sites/saafkart/index.html">
-            <div class="demo-art" data-art='{"shape":"spray","body":"#FFFFFF","accent":"#D4F53C","ink":"#0B1B4D","lid":"#1550E6","label":"GLASS","sub":"cleaner"}'></div>
-            <div class="demo-text">
-              <h4>SaafKart</h4>
-              <p>A Blinkit-style store for cleaning items. Pincode check, delivery in about 2 hours, ₹10 sachets, search.</p>
-              <span class="go">Open demo</span>
-            </div>
-          </a>
-        </li>
-        <li class="demo" style="--c1:#FF6B1A;--c2:#2A0E3D">
-          <a href="sites/chamak/index.html">
-            <div class="demo-art" data-art='{"shape":"box","body":"#2A0E3D","accent":"#7FF2C3","ink":"#2A0E3D","label":"CHHATH KIT","sub":"deep clean"}'></div>
-            <div class="demo-text">
-              <h4>Chamak</h4>
-              <p>Home cleaning and car care, made by us as concentrates: one small bottle makes up to 100 bottles’ worth. Order for delivery, or buy on Amazon.</p>
-              <span class="go">Open demo</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <section class="gap" aria-labelledby="gap-title">
-      <h2 id="gap-title">Why this can work here</h2>
-      <div class="gap-grid">
-        <div>
-          <h3>The gap</h3>
-          <p>Quick-commerce apps grow city by city, starting with the biggest. Until they reach our area, people keep buying cleaning items at the kirana shop, and modern wellness brands only reach them through Amazon, days later. That leaves a few years to build a local name.</p>
-        </div>
-        <div>
-          <h3>The catch</h3>
-          <p>Those apps stay away partly because people here spend less per order. So we can’t copy their model as it is. We have to sell smaller packs, keep delivery cheap and let people pay at the door.</p>
-        </div>
-        <div>
-          <h3>How the demos handle it</h3>
-          <ul class="ticks">
-            <li>₹10-29 sachets and trial packs, so trying costs almost nothing</li>
-            <li>Free delivery from ₹149-299, not ₹500+</li>
-            <li>Cash or UPI at the door. No card needed, no online payment</li>
-            <li>Order on WhatsApp for people who don’t like forms</li>
-            <li>Combos and refills that show the money saved</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="costs" class="costs" aria-labelledby="costs-title">
-      <h2 id="costs-title">What the website costs to run</h2>
-      <p class="sec-lede">Monthly technology cost only. Stock, packaging and delivery cost far more, and they’re covered further down.</p>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th scope="col">Item</th><th scope="col">100-1,000 customers a month</th><th scope="col">About 10,000 customers a month</th></tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">Website hosting</th><td><b>₹0</b> on Cloudflare Pages (static pages are free and unlimited)</td><td><b>₹0</b>, same setup</td></tr>
-            <tr><th scope="row">Domain name (.in)</th><td>About <b>₹550</b> in year one, then about ₹900 a year</td><td>Same</td></tr>
-            <tr><th scope="row">Taking orders</th><td><b>₹0</b>: WhatsApp Business app, orders tracked in a Google Sheet</td><td>Database for orders, stock and logins: Supabase, free tier or <b>$25 a month</b> (about ₹2,200)</td></tr>
-            <tr><th scope="row">Order messages</th><td><b>₹0</b>: replies sent by hand</td><td>Automatic WhatsApp updates: about ₹0.12 per message from Meta, plus provider fee and GST. Roughly <b>₹1,500-3,500</b> a month</td></tr>
-            <tr><th scope="row">Payments</th><td><b>₹0</b>: cash or UPI QR at the door</td><td>If we add online payment, Razorpay takes <b>2% + GST</b> per payment, with no setup or yearly fee. Cash on delivery stays free</td></tr>
-            <tr class="total"><th scope="row">Total</th><td><b>Under ₹100 a month</b></td><td><b>About ₹4,000-6,000 a month</b>, plus 2.36% of online payments</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="real-cost">
-        <h3>The real costs are stock and delivery</h3>
-        <p>A rough example for the cleaning shop. <em>These are assumptions to check with suppliers and riders, not quotes.</em></p>
-        <dl class="calc">
-          <div><dt>Average order</dt><dd>₹180</dd></div>
-          <div><dt>Margin on cleaning goods (assume 25-30%)</dt><dd>₹45-55</dd></div>
-          <div><dt>One local rider, about ₹15,000 a month, 25 orders a day</dt><dd>−₹20</dd></div>
-          <div><dt>Bag, tape, sticker</dt><dd>−₹5</dd></div>
-          <div class="is-total"><dt>Left per order</dt><dd>₹20-30</dd></div>
-        </dl>
-        <p>So about 25 orders a day covers one rider and leaves around ₹15,000-22,000 a month. Profit grows with more orders per rider in a tight area. That is why the demos limit delivery to a few pincodes.</p>
-      </div>
-    </section>
-
-    <section id="platform" class="platform" aria-labelledby="platform-title">
-      <h2 id="platform-title">Why our own website, not Shopify</h2>
-      <div class="fix">
-        <p><b>A correction first.</b> Shopify is well supported in India. In fact, 6 of the 7 sites you sent run on Shopify: Yoga Bar, Snacc, SuperYou, Bliss Welness, Olipop and Gutsi. The reason to skip it for now is cost and fit, not support.</p>
-      </div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th scope="col"></th><th scope="col">Our own site (these demos)</th><th scope="col">Shopify</th><th scope="col">Dukaan</th><th scope="col">Amazon / Meesho / ONDC</th></tr>
-          </thead>
-          <tbody>
-            <tr><th scope="row">Monthly fee</th><td><b>₹0</b></td><td>About ₹1,499 (Basic, billed yearly)</td><td>Roughly ₹375-750 (check current plans)</td><td>₹0 to list</td></tr>
-            <tr><th scope="row">Cut per online sale</th><td>Only the gateway’s 2%</td><td>Gateway 2% <b>plus</b> Shopify’s own 2% on Basic. Cash orders exempt</td><td>A per-order fee on lower plans</td><td>Commission per sale, often large on Amazon</td></tr>
-            <tr><th scope="row">Pincode-only delivery, WhatsApp orders, ₹10 items</th><td>Built in</td><td>Needs paid apps</td><td>Partly</td><td>No control</td></tr>
-            <tr><th scope="row">Who fixes things</th><td>Us (a developer)</td><td>Shopify</td><td>Dukaan</td><td>The marketplace</td></tr>
-            <tr><th scope="row">Best when</th><td>Starting small and local</td><td>Selling all over India at volume</td><td>Want a ready shop fast</td><td>Extra sales channel</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="note">Our pick: our own site at ₹0 for local delivery orders, with Amazon for buyers anywhere else in India, which is the owner’s plan. Each product on the site links to its Amazon listing. Move to Shopify only if monthly online sales grow enough to justify its fees.</p>
-    </section>
-
-    <section id="plan" class="plan" aria-labelledby="plan-title">
-      <h2 id="plan-title">Suggested plan</h2>
-      <ol class="steps">
-        <li>
-          <h3>Start with cleaning</h3>
-          <p>Every home buys it every month, it needs no special licence beyond GST and correct labels, and it builds a list of customers and a delivery route. Margins are thin, so keep the area tight.</p>
-        </li>
-        <li>
-          <h3>Test on WhatsApp for 4-6 weeks</h3>
-          <p>About 30 products, one area, cash on delivery, orders in a Google Sheet. Share the demo link as a catalogue. Spend on stock, not technology.</p>
-        </li>
-        <li>
-          <h3>Put the website live</h3>
-          <p>Once there are steady repeat orders, launch the real site on a .in domain (about ₹550). The demo code is already most of it.</p>
-        </li>
-        <li>
-          <h3>Add supplements on the same delivery route</h3>
-          <p>Higher margin, but it needs an FSSAI licence, a contract manufacturer and more trust-building. The riders and customers from step 1 make it cheaper to launch.</p>
-        </li>
-        <li>
-          <h3>Automate at about 30 orders a day</h3>
-          <p>Add the order database, WhatsApp updates and online payment (Razorpay, using the existing company for its checks). That is the ₹4,000-6,000 a month stage.</p>
-        </li>
-      </ol>
-      <div class="alt">
-        <h3>Is there a better option?</h3>
-        <p><b>Supply the kirana shops instead of homes.</b> Selling our own-label cleaning packs wholesale to 50 local shops avoids most delivery cost and uses shops people already trust. It can run alongside the home delivery shop, and Chamak’s bulk-order form is built for it.</p>
-      </div>
-    </section>
-
-    <section id="make" class="make" aria-labelledby="make-title">
-      <h2 id="make-title">Making it ourselves, selling in our shop and on Amazon</h2>
-      <p class="sec-lede">Making the products ourselves is where the profit is, and concentrates are cheap to ship. These are the problems to solve before the first batch, most serious first.</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th scope="col">Risk</th><th scope="col">Why it matters</th><th scope="col">What to do</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Handwash licence</th><td>Handwash touches skin, so it counts as a cosmetic. Making it needs a state cosmetics manufacturing licence (Form COS-8), which a home setup is unlikely to get.</td><td>Leave handwash out at first, or have a licensed factory make it under our brand.</td></tr>
-            <tr><th scope="row">Names and claims</th><td>“Lyzol-type” is too close to Lizol, another company’s trademark. “Sanitizer” and “kills 99.9% germs” need lab proof.</td><td>Use our own names. Say “cleans and removes odour” until a lab test backs anything more.</td></tr>
-            <tr><th scope="row">Amazon hazardous-goods check</th><td>Amazon asks for a Safety Data Sheet or exemption sheet for chemical products. Acid toilet cleaners and alcohol-based sprays can be classed as dangerous goods, and the listing is paused until the papers are accepted.</td><td>Get a Safety Data Sheet for every product from a chemist or lab before listing.</td></tr>
-            <tr><th scope="row">Safety at home</th><td>Acids give off fumes and burn skin. Alcohol catches fire. Children are around.</td><td>A separate airy room, gloves and goggles, locked storage, and “do not mix with bleach” on every label.</td></tr>
-            <tr><th scope="row">Packaging paperwork</th><td>Every pack needs MRP, net quantity, maker’s address, batch number and a customer-care number. Packers usually register under Legal Metrology. Amazon needs GST.</td><td>GST, Udyam and Legal Metrology packer registration first. File a trademark for the brand name.</td></tr>
-            <tr><th scope="row">Quality and leaks</th><td>Home batches vary, and a weak “50X” earns bad Amazon reviews that never go away. One leaking bottle ruins the parcel.</td><td>Fixed recipe measured by weight, a batch log, sealed caps, and a test parcel sent to ourselves.</td></tr>
-            <tr><th scope="row">Amazon costs</th><td>On a ₹99 bottle, shipping and fees eat most of the margin, and a new brand needs ads to be seen.</td><td>Sell ₹299+ combos of concentrates on Amazon. Keep single bottles for the local shop.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="note">Home production rules were the least clear part of the research. Confirm the handwash licence, the Legal Metrology registration and any pollution-board permission with a CA before buying stock.</p>
-    </section>
-
-    <section id="rules" class="rules" aria-labelledby="rules-title">
-      <h2 id="rules-title">Licences and rules to know</h2>
-      <div class="rule-grid">
-        <div>
-          <h3>Supplements</h3>
-          <ul class="ticks">
-            <li>Sold as a health supplement, ashwagandha and similar herbs fall under <b>FSSAI</b>. That means a food business licence and the health-supplement rules.</li>
-            <li>No disease claims (“cures anxiety”, “boosts immunity against…”). Claims like that turn it into an Ayurvedic medicine, which needs a state <b>AYUSH drug licence</b>.</li>
-            <li>The easiest start is a contract manufacturer that already holds these licences, selling under our brand.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Cleaning products</h3>
-          <ul class="ticks">
-            <li>GST registration. The existing company may already cover this.</li>
-            <li>Packs need the legal label details: MRP, net quantity, maker’s name and address, and customer-care contact.</li>
-            <li>For own-label packs, get the supplier’s quality and safety documents in writing.</li>
-          </ul>
-        </div>
-      </div>
-      <p class="note">This is a starting checklist, not legal advice. Confirm with a CA or licensing consultant before launch.</p>
-    </section>
-
-    <section class="fine" aria-labelledby="fine-title">
-      <h2 id="fine-title">What’s made up in the demos</h2>
-      <p>Brand names, products, prices, reviews, lab reports and the WhatsApp number (+91 99999 99999) are all samples. Product pictures are drawn, not photographed. Before going live, replace these with real suppliers, real packs and the real WhatsApp Business number.</p>
-      <h3>Sources for the numbers</h3>
-      <ul class="sources">
-        <li><a href="https://developers.cloudflare.com/pages/functions/pricing/">Cloudflare Pages: static requests free and unlimited</a></li>
-        <li><a href="https://razorpay.com/pricing/">Razorpay pricing: 2% platform fee + GST, ₹0 setup</a></li>
-        <li><a href="https://supabase.com/pricing">Supabase pricing: free tier and $25 Pro</a></li>
-        <li><a href="https://registry.in/tariff">.IN Registry tariff</a> and <a href="https://cybernews.com/best-domain-registrars/best-india-domain-registrars/">retail .in prices</a></li>
-        <li><a href="https://www.zoko.io/post/shopify-india-pricing-explained">Shopify India pricing explained</a> and <a href="https://razorpay.com/blog/shopify-payment-gateway-cost-india/">Shopify’s extra fee with outside gateways</a></li>
-        <li><a href="https://baat.ai/blog/whatsapp-api-pricing-india">WhatsApp Business API rates for India</a></li>
-        <li><a href="https://www.corpseed.com/knowledge-centre/difference-between-fssai-license-and-ayush-license">FSSAI vs AYUSH licence</a> and <a href="https://www.nutraingredients.com/Article/2024/05/01/ayush-products-should-not-claim-nutraceutical-value-says-indian-regulator">AYUSH guidance on claims</a></li>
-        <li><a href="https://www.lawrbit.com/industry-specific/cosmetic-manufacturing-license-india-procedure/">Cosmetics manufacturing licence (COS-8)</a></li>
-        <li><a href="https://sell.amazon.in/seller-blog/what-are-dangerous-goods">Amazon India: dangerous goods and Safety Data Sheets</a></li>
-        <li><a href="https://www.mapmychannel.com/blog/amazon-india-announces-zero-referral-fees-march-2026">Amazon India: no referral fee under ₹1,000 (March 2026)</a></li>
-      </ul>
-      <p class="note">Prices checked in October 2026. Dukaan and WhatsApp rates vary by source, so confirm them before budgeting.</p>
     </section>
   </main>
 
-  <script src="shared/packs.js?v=202610241353"></script>
-  <script>
-    document.querySelectorAll('[data-art]').forEach((el) => {
-      el.innerHTML = window.Packs.pack(JSON.parse(el.dataset.art));
-    });
-  </script>
+  <footer class="foot">
+    <div class="foot-cta">
+      <svg width="20" height="20" class="spark foot-spark" aria-hidden="true"><use href="#spark"/></svg>
+      <h2>Kuch poochna hai? WhatsApp karo.</h2>
+      <p>Real people, 9 a.m. to 9 p.m. Hindi or English, dono chalega.</p>
+      <a class="btn" href="https://wa.me/919999999999?text=Hi%20Chamak!" target="_blank" rel="noopener">
+        <svg width="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.1L4 20Z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+    <div class="foot-meta">
+      <a class="logo" href="index.html">chamak<svg width="20" height="20" class="logo-spark" aria-hidden="true"><use href="#spark"/></svg></a>
+      <p>Demo website. Products, prices and reviews are samples for a business pitch.</p>
+      <p>Amazon buttons are placeholders until the listings go live.</p>
+    </div>
+  </footer>
+
+  <button class="cart-strip" type="button" data-cart-bar data-open-cart>
+    <span><b data-cart-count>0</b> in bag</span><span>View bag · <b data-cart-total>₹0</b></span>
+  </button>
+
+  <script src="shared/packs.js?v=202610241400"></script>
+  <script src="shared/cart.js?v=202610241400"></script>
+  <script src="products.js?v=202610241400"></script>
+  <script src="app.js?v=202610241400"></script>
 </body>
 </html>

@@ -7,13 +7,9 @@ const path = require("path");
 const root = path.join(__dirname, "..");
 const stamp = new Date().toISOString().replace(/\D/g, "").slice(0, 12);
 
-const pages = [path.join(root, "index.html")];
-for (const site of fs.readdirSync(path.join(root, "sites"))) {
-  for (const page of ["index.html", "checkout.html"]) {
-    const file = path.join(root, "sites", site, page);
-    if (fs.existsSync(file)) pages.push(file);
-  }
-}
+const pages = ["index.html", "checkout.html"].map((page) =>
+  path.join(root, page),
+);
 
 // Only relative links: hosted fonts and CDNs keep their own URLs.
 const local =

@@ -1,7 +1,7 @@
 {
-  "name": "mama-project-demo-shops",
+  "name": "chamak-demo-shop",
   "private": true,
-  "description": "Four free-to-host demo shop websites and a pitch page",
+  "description": "Chamak demo shop: cleaning and car care concentrates, free to host",
   "scripts": {
     "test": "node --test",
     "serve": "python3 -m http.server 8080",

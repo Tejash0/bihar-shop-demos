@@ -1,7 +1,8 @@
-# MAMA_PROJECT - demo shop websites
+# MAMA_PROJECT - Chamak demo shop
 
-Four static demo shops plus a pitch page, made so the owner can pitch two side-hustle ideas in Bihar.
+Demo website for Chamak, a home cleaning and car care concentrates brand made locally in Patna, sold for local delivery and on Amazon.
 Everything must stay free: static files only, no payment gateway, no paid hosting.
+Live at https://tejash0.github.io/bihar-shop-demos/ (GitHub Pages from `main`).
 
 ## Commands
 
@@ -11,17 +12,18 @@ Everything must stay free: static files only, no payment gateway, no paid hostin
 
 ## Layout
 
-- `index.html` - pitch page linking all demos, with costs and the business plan.
-- `shared/cart.js` - cart, drawer and checkout used by every shop. Pure helpers are unit-tested.
+- `index.html`, `checkout.html`, `style.css` - the Chamak shop.
+- `products.js` - `window.SHOP`: settings, products, kits, Amazon links. Edit prices and products here.
+- `app.js` - category tabs, product cards, kit builder, bulk-order form.
+- `shared/cart.js` - cart, drawer and checkout. Pure helpers are unit-tested.
 - `shared/packs.js` - draws product packshots as SVG from an `art` object.
 - `shared/base.css` - reset, drawer and checkout styles, themed by CSS tokens.
-- `sites/<shop>/` - one folder per shop: `index.html`, `checkout.html`, `style.css`, `products.js`, `app.js`.
+- `sites/chamak/` - redirects only, so the old link already shared on WhatsApp still works.
 
 ## Rules
 
-- Each shop sets `window.SHOP` in `products.js` and themes the shared parts by overriding tokens in `style.css`.
-- Checkout is pay-on-delivery only (cash or UPI at the door) plus "Order on WhatsApp". Never add a payment gateway.
-- All products, prices and reviews are invented samples; every footer says so.
-- Supplement copy must not claim to cure or treat disease.
+- Checkout is pay-on-delivery only (cash or UPI at the door) plus "Order on WhatsApp" and "Buy on Amazon". Never add a payment gateway.
+- Products, prices and reviews are samples until the owner sends real ones; the footer says so.
+- Never use another brand's name (e.g. "Lizol") or germ-kill claims ("sanitizer", "99.9%") without lab proof.
 - Paths are relative so the site works from any GitHub Pages sub-path.
 - Give every inline `<svg>` a `width` attribute so it stays icon-sized even if CSS fails to load.
