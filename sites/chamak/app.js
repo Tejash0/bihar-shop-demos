@@ -1,4 +1,4 @@
-// Chamak page: hero packs, ready-kit grid, build-your-own kit, refills and the bulk form.
+// Chamak page: hero, category tabs over the product grid, kits, build-your-own kit and the bulk form.
 (function () {
   "use strict";
   const shop = window.SHOP;
@@ -11,18 +11,110 @@
     plus: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
     check:
       '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>',
+    drop: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11Z"/></svg>',
   };
+
+  // Add (pay on delivery) plus the secondary Amazon link, side by side.
+  const buyPair = (p, cls = "") =>
+    `<div class="buy-pair">
+      <div data-buy="${p.id}"${cls ? ` data-buy-class="${cls}"` : ""}></div>
+      <a class="amz" href="${p.amazon}" target="_blank" rel="noopener" aria-label="Buy ${p.name} on Amazon (opens in a new tab)">Buy on Amazon</a>
+    </div>`;
 
   // ---------- hero ----------
   document.querySelectorAll("[data-pack]").forEach((el) => {
     el.innerHTML = pack(byId(el.dataset.pack));
   });
   const hero = byId("kit-chhath");
-  document.querySelector(".hk-list").innerHTML = hero.contents
-    .map((c) => `<li>${c}</li>`)
+  document.querySelector(".hk-line").textContent = hero.line;
+  document.querySelector(".hk-list").innerHTML = hero.items
+    .map((id) => `<li>${byId(id).short}</li>`)
+    .concat(`<li class="is-yield">Makes ${shop.volume(hero.makes)}</li>`)
+    .join("");
+  document.querySelector(".hk-buy .price").innerHTML =
+    `<b>${rupees(hero.price)}</b><s>${rupees(hero.mrp)}</s><span>Save ${rupees(hero.mrp - hero.price)}</span>`;
+  document.querySelectorAll("[data-amazon]").forEach((a) => {
+    const p = byId(a.dataset.amazon);
+    a.href = p.amazon;
+    a.setAttribute(
+      "aria-label",
+      `Buy ${p.name} on Amazon (opens in a new tab)`,
+    );
+  });
+
+  // ---------- shop: category tabs over the grid ----------
+  const tabsEl = document.querySelector(".tabs");
+  const panelsEl = document.querySelector(".panels");
+
+  function card(p) {
+    return `<li class="card" style="--tint:${p.art.body}">
+      <div class="card-art">${p.tag ? `<span class="card-tag">${p.tag}</span>` : ""}${pack(p)}</div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <p class="card-size">${p.size}</p>
+        <p class="card-yield${p.conc ? "" : " is-plain"}">${p.conc ? icon.drop : ""}${p.yield}</p>
+        <p class="card-line">${p.line}</p>
+        <div class="card-buy">
+          <p class="price"><b>${rupees(p.price)}</b><s>${rupees(p.mrp)}</s><span>${off(p)}% off</span></p>
+          ${buyPair(p)}
+        </div>
+      </div>
+    </li>`;
+  }
+
+  tabsEl.innerHTML = shop.categories
+    .map((c, i) => {
+      const n = shop.singles.filter((s) => s.cat === c.id).length;
+      return `<button type="button" role="tab" id="tab-${c.id}" aria-controls="panel-${c.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-tab="${c.id}">${c.label}<span>${n}</span></button>`;
+    })
+    .join("");
+  panelsEl.innerHTML = shop.categories
+    .map(
+      (c, i) =>
+        `<div class="panel" role="tabpanel" id="panel-${c.id}" aria-labelledby="tab-${c.id}"${i ? " hidden" : ""}>
+          <ul class="grid">${shop.singles
+            .filter((s) => s.cat === c.id)
+            .map(card)
+            .join("")}</ul>
+        </div>`,
+    )
     .join("");
 
-  // ---------- ready kits ----------
+  function selectTab(id, focus) {
+    tabsEl.querySelectorAll("[data-tab]").forEach((b) => {
+      const on = b.dataset.tab === id;
+      b.setAttribute("aria-selected", on);
+      b.tabIndex = on ? 0 : -1;
+      if (on && focus) b.focus();
+    });
+    panelsEl
+      .querySelectorAll(".panel")
+      .forEach((p) => (p.hidden = p.id !== `panel-${id}`));
+  }
+
+  tabsEl.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-tab]");
+    if (b) selectTab(b.dataset.tab);
+  });
+  // Arrow keys move between tabs, as screen-reader users expect from a tablist.
+  tabsEl.addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const ids = shop.categories.map((c) => c.id);
+    const cur = ids.indexOf(
+      tabsEl.querySelector('[aria-selected="true"]').dataset.tab,
+    );
+    const next =
+      ids[(cur + (e.key === "ArrowRight" ? 1 : ids.length - 1)) % ids.length];
+    selectTab(next, true);
+    e.preventDefault();
+  });
+  document
+    .querySelectorAll("[data-jump]")
+    .forEach((a) =>
+      a.addEventListener("click", () => selectTab(a.dataset.jump)),
+    );
+
+  // ---------- ready kits (the festival kit is the hero, so it is left out here) ----------
   document.querySelector(".kit-grid").innerHTML = shop.kits
     .filter((k) => k.id !== hero.id)
     .map(
@@ -34,68 +126,56 @@
           <p class="kit-has">${k.contents.join(" · ")}</p>
           <div class="kit-buy">
             <p class="price"><b>${rupees(k.price)}</b><s>${rupees(k.mrp)}</s><span>Save ${rupees(k.mrp - k.price)}</span></p>
-            <div data-buy="${k.id}"></div>
+            ${buyPair(k)}
           </div>
         </div>
       </li>`,
     )
     .join("");
 
-  // ---------- refills ----------
-  document.querySelector(".refill-row").innerHTML = shop.refills
-    .map(
-      (r) => `<li class="refill">
-        <div class="refill-art">${pack(r)}</div>
-        <h3>${r.name}</h3>
-        <p class="refill-size">${r.size}</p>
-        <p class="price"><b>${rupees(r.price)}</b><s>${rupees(r.mrp)}</s></p>
-        <div data-buy="${r.id}" data-buy-class="is-small"></div>
-      </li>`,
-    )
-    .join("");
-
   // ---------- build your own kit ----------
-  const picksEl = document.querySelector(".picks");
+  const groupsEl = document.querySelector(".pick-groups");
   const slotsEl = document.querySelector(".tray-slots");
   const fillEl = document.querySelector(".meter-fill");
   const hintEl = document.querySelector(".tray-hint");
   const priceEl = document.querySelector(".tray-price");
   const addBtn = document.querySelector(".tray-add");
   const clearBtn = document.querySelector(".tray-clear");
-  const maxItems = shop.singles.length;
   const picked = new Set();
+  const groupTitle = { home: "Ghar ke liye", car: "Gaadi ke liye" };
 
-  picksEl.innerHTML = shop.singles
+  groupsEl.innerHTML = shop.categories
     .map(
-      (
-        s,
-      ) => `<li><button class="pick" type="button" data-pick="${s.id}" aria-pressed="false">
-        <span class="pick-art">${pack(s)}</span>
-        <span class="pick-name">${s.name}</span>
-        <span class="pick-meta">${s.size} · <b>${rupees(s.price)}</b></span>
-        <span class="pick-mark">${icon.plus}${icon.check}</span>
-      </button></li>`,
+      (c) => `<h3 class="pick-title">${groupTitle[c.id] || c.label}</h3>
+      <ul class="picks" aria-label="${c.label} products you can add to your kit">${shop.singles
+        .filter((s) => s.cat === c.id)
+        .map(
+          (
+            s,
+          ) => `<li><button class="pick" type="button" data-pick="${s.id}" aria-pressed="false">
+            <span class="pick-art">${pack(s)}</span>
+            <span class="pick-name">${s.name}</span>
+            <span class="pick-meta">${s.conc ? `${s.conc}X · ` : ""}<b>${rupees(s.price)}</b></span>
+            <span class="pick-mark">${icon.plus}${icon.check}</span>
+          </button></li>`,
+        )
+        .join("")}</ul>`,
     )
     .join("");
-
-  function nextTier(n) {
-    return shop.tiers.find((t) => n < t.min);
-  }
 
   function renderTray(justAdded) {
     const ids = [...picked];
     const n = ids.length;
-    const slots = Math.max(8, n);
-    slotsEl.innerHTML = Array.from({ length: slots }, (_, i) => {
+    slotsEl.innerHTML = Array.from({ length: Math.max(8, n) }, (_, i) => {
       const s = ids[i] && byId(ids[i]);
       return s
         ? `<li class="slot is-full${s.id === justAdded ? " is-new" : ""}" title="${s.name}">${pack(s)}</li>`
         : `<li class="slot" aria-hidden="true"></li>`;
     }).join("");
 
-    fillEl.style.setProperty("--n", n);
+    fillEl.style.setProperty("--n", Math.min(n, 10));
     const tier = shop.tierFor(n);
-    const next = nextTier(n);
+    const next = shop.tiers.find((t) => n < t.min);
     if (!n) hintEl.textContent = "Tap any product to drop it in your kit.";
     else if (n < shop.kitMin)
       hintEl.textContent = `Add ${shop.kitMin - n} more to make a kit. ${shop.tiers[0].min}+ items get ${shop.tiers[0].off * 100}% off.`;
@@ -114,17 +194,17 @@
       ? `Add kit to bag · ${rupees(price)}`
       : "Add kit to bag";
     clearBtn.hidden = !n;
-    picksEl.querySelectorAll("[data-pick]").forEach((b) => {
+    groupsEl.querySelectorAll("[data-pick]").forEach((b) => {
       b.setAttribute("aria-pressed", picked.has(b.dataset.pick));
     });
   }
 
-  picksEl.addEventListener("click", (e) => {
+  groupsEl.addEventListener("click", (e) => {
     const b = e.target.closest("[data-pick]");
     if (!b) return;
     const id = b.dataset.pick;
     if (picked.has(id)) picked.delete(id);
-    else if (picked.size < maxItems) picked.add(id);
+    else picked.add(id);
     renderTray(picked.has(id) ? id : null);
   });
 

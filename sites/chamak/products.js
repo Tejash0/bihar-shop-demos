@@ -1,5 +1,7 @@
-// Chamak catalogue and shop settings. Edit prices, products or the WhatsApp number here.
+// Chamak catalogue and shop settings. Edit prices, products, Amazon links or the WhatsApp number here.
 // Loaded before app.js and before the cart starts, so saved custom kits can join the catalogue.
+// `conc` is the concentrate strength: 50 means 1 part concentrate makes 50 parts of ready cleaner.
+// `ml` is the bottle size; `makes` (litres) is worked out from both. Leave `conc` out for ready-to-use items.
 window.SHOP = {
   id: "chamak",
   name: "Chamak",
@@ -7,29 +9,329 @@ window.SHOP = {
   delivery: { fee: 25, freeAbove: 249 },
   pincodes: null, // null = accept any 6-digit pincode
   areaNote:
-    "Next-day delivery anywhere in Patna if you order by 8 p.m. Rest of Bihar in 3-4 days.",
+    "Next-day delivery anywhere in Patna if you order by 8 p.m. Outside Patna, buy on Amazon.",
   eta: "in 1 day",
   orderPrefix: "CH",
   addLabel: "Add",
   emptyHint: "Start with a ready kit, or build your own and get up to 20% off.",
 
-  // Ready kits: one box per cleaning job. The first one is the hero.
+  categories: [
+    { id: "home", label: "Home Cleaning" },
+    { id: "car", label: "Auto Car Care" },
+  ],
+
+  // Singles: everything sold on its own. `short` is used in kit size lines.
+  singles: [
+    // ---------- Home Cleaning (the owner's list) ----------
+    {
+      id: "h-glass",
+      cat: "home",
+      short: "Glass",
+      name: "Glass & Mirror Cleaner",
+      conc: 50,
+      ml: 100,
+      price: 129,
+      mrp: 179,
+      line: "Streak-free windows, mirrors and almirah glass. Mix into any spray bottle.",
+      art: {
+        shape: "spray",
+        body: "#8FD3FF",
+        accent: "#2A0E3D",
+        ink: "#8FD3FF",
+        lid: "#2A0E3D",
+        label: "GLASS",
+        sub: "50X concentrate",
+      },
+    },
+    {
+      id: "h-floor",
+      cat: "home",
+      short: "Floor",
+      name: "Perfumed Floor Cleaner, Jasmine",
+      conc: 50,
+      ml: 200,
+      price: 149,
+      mrp: 199,
+      tag: "Bestseller",
+      line: "Jasmine that stays after the pocha dries. Half a cap per bucket.",
+      art: {
+        shape: "bottle",
+        body: "#FF9EC4",
+        accent: "#2A0E3D",
+        ink: "#FF9EC4",
+        lid: "#2A0E3D",
+        label: "FLOOR",
+        sub: "jasmine 50X",
+      },
+    },
+    {
+      id: "h-heavy",
+      cat: "home",
+      short: "Heavy-duty floor",
+      name: "Heavy-Duty Floor Cleaner",
+      conc: 50,
+      ml: 500,
+      price: 249,
+      mrp: 329,
+      tag: "For shops",
+      line: "Commercial strength for shops, offices and coaching halls with heavy footfall.",
+      art: {
+        shape: "can",
+        body: "#2A0E3D",
+        accent: "#FFD84A",
+        ink: "#2A0E3D",
+        label: "HEAVY",
+        sub: "floor 50X",
+      },
+    },
+    {
+      id: "h-bath",
+      cat: "home",
+      short: "Bathroom",
+      name: "Heavy-Duty Bathroom Cleaner",
+      conc: 20,
+      ml: 250,
+      price: 149,
+      mrp: 189,
+      line: "Cuts hard-water marks and soap scum on tiles, taps and buckets.",
+      art: {
+        shape: "bottle",
+        body: "#7FF2C3",
+        accent: "#2A0E3D",
+        ink: "#7FF2C3",
+        lid: "#2A0E3D",
+        label: "BATH",
+        sub: "20X concentrate",
+      },
+    },
+    {
+      id: "h-dish",
+      cat: "home",
+      short: "Dishwash",
+      name: "Dishwash Gel Concentrate",
+      conc: 5,
+      ml: 250,
+      price: 99,
+      mrp: 129,
+      line: "Lifts oil from kadhai and tiffin. Dilute into your old dishwash bottle.",
+      art: {
+        shape: "pouch",
+        body: "#FFD84A",
+        accent: "#2A0E3D",
+        ink: "#FFD84A",
+        label: "DISH",
+        sub: "5X gel",
+      },
+    },
+    {
+      id: "h-toilet",
+      cat: "home",
+      short: "Toilet",
+      name: "Ultra Shine Toilet Bowl Cleaner",
+      conc: 3,
+      ml: 250,
+      price: 89,
+      mrp: 110,
+      line: "Thick gel that clings under the rim and leaves the bowl shining white.",
+      art: {
+        shape: "bottle",
+        body: "#2A0E3D",
+        accent: "#7FF2C3",
+        ink: "#2A0E3D",
+        lid: "#7FF2C3",
+        label: "TOILET",
+        sub: "3X ultra shine",
+      },
+    },
+    {
+      id: "h-hand",
+      cat: "home",
+      short: "Handwash",
+      name: "Foaming Handwash",
+      conc: 5,
+      ml: 100,
+      price: 79,
+      mrp: 99,
+      line: "Fill a foam pump with water and a little of this. Soft on hands, neem fresh.",
+      art: {
+        shape: "dropper",
+        body: "#7FF2C3",
+        accent: "#2A0E3D",
+        ink: "#7FF2C3",
+        lid: "#2A0E3D",
+        label: "HAND",
+        sub: "5X foam",
+      },
+    },
+    {
+      id: "h-fresh",
+      cat: "home",
+      short: "Freshener",
+      name: "Room Freshener & Odour Remover",
+      conc: 2,
+      ml: 100,
+      price: 99,
+      mrp: 129,
+      line: "Two sprays clear cooking and damp smells. Mogra and sandal notes.",
+      art: {
+        shape: "spray",
+        body: "#FFB547",
+        accent: "#2A0E3D",
+        ink: "#FFB547",
+        lid: "#2A0E3D",
+        label: "FRESH",
+        sub: "2X room spray",
+      },
+    },
+
+    // ---------- Auto Car Care (placeholder list until the owner sends his) ----------
+    {
+      id: "c-shampoo",
+      cat: "car",
+      short: "Car shampoo",
+      name: "Car Wash Shampoo, Wash & Wax",
+      conc: 100,
+      ml: 200,
+      price: 199,
+      mrp: 249,
+      tag: "Bestseller",
+      line: "One capful in a bucket washes a whole car and leaves a wax shine.",
+      art: {
+        shape: "can",
+        body: "#FF6B1A",
+        accent: "#2A0E3D",
+        ink: "#FF6B1A",
+        label: "WASH",
+        sub: "wash & wax 100X",
+      },
+    },
+    {
+      id: "c-waterless",
+      cat: "car",
+      short: "Waterless wash",
+      name: "Waterless Car & Bike Wash",
+      conc: 10,
+      ml: 100,
+      price: 149,
+      mrp: 199,
+      line: "Spray, wipe, done. For flats and hostels with no space for a bucket.",
+      art: {
+        shape: "spray",
+        body: "#2A0E3D",
+        accent: "#7FF2C3",
+        ink: "#2A0E3D",
+        lid: "#7FF2C3",
+        label: "NO WATER",
+        sub: "10X wash",
+      },
+    },
+    {
+      id: "c-shine",
+      cat: "car",
+      short: "Dash shine",
+      name: "Dashboard & Tyre Shine",
+      ml: 200,
+      price: 179,
+      mrp: 229,
+      line: "Ready to use. Matte-black dash and glossy tyres in one bottle.",
+      art: {
+        shape: "jar",
+        body: "#2A0E3D",
+        accent: "#FF6B1A",
+        ink: "#2A0E3D",
+        lid: "#FF6B1A",
+        label: "SHINE",
+        sub: "dash & tyre",
+      },
+    },
+    {
+      id: "c-washer",
+      cat: "car",
+      short: "Windshield",
+      name: "Windshield Washer",
+      conc: 100,
+      ml: 50,
+      price: 79,
+      mrp: 99,
+      line: "A few drops in the washer tank. Clears dust and bird mess without smears.",
+      art: {
+        shape: "dropper",
+        body: "#8FD3FF",
+        accent: "#2A0E3D",
+        ink: "#8FD3FF",
+        lid: "#2A0E3D",
+        label: "WIPER",
+        sub: "100X",
+      },
+    },
+    {
+      id: "c-alloy",
+      cat: "car",
+      short: "Alloy",
+      name: "Alloy & Rim Cleaner",
+      conc: 10,
+      ml: 100,
+      price: 169,
+      mrp: 219,
+      line: "Loosens brake dust and road grime from alloys and steel rims.",
+      art: {
+        shape: "bottle",
+        body: "#C9D3E0",
+        accent: "#2A0E3D",
+        ink: "#C9D3E0",
+        lid: "#2A0E3D",
+        label: "ALLOY",
+        sub: "10X rim",
+      },
+    },
+    {
+      id: "c-seat",
+      cat: "car",
+      short: "Seat",
+      name: "Seat & Fabric Cleaner",
+      conc: 20,
+      ml: 100,
+      price: 149,
+      mrp: 189,
+      line: "Lifts chai and mud stains from car seats, roof lining and sofa covers.",
+      art: {
+        shape: "spray",
+        body: "#7FF2C3",
+        accent: "#2A0E3D",
+        ink: "#7FF2C3",
+        lid: "#2A0E3D",
+        label: "SEAT",
+        sub: "20X fabric",
+      },
+    },
+    {
+      id: "c-cloth",
+      cat: "car",
+      short: "Cloths",
+      name: "Microfibre Cloth",
+      pack: "2-pack",
+      price: 99,
+      mrp: 149,
+      line: "Thick, soft and lint-free. Machine washable, so you reuse them for months.",
+      art: {
+        shape: "sachet",
+        body: "#FFD84A",
+        accent: "#2A0E3D",
+        ink: "#FFD84A",
+        label: "CLOTH",
+        sub: "2-pack",
+      },
+    },
+  ],
+
+  // Ready kits: price is below the singles added up (the kit's mrp is that sum).
   kits: [
     {
       id: "kit-chhath",
       name: "Chhath & Diwali Deep-Clean Kit",
-      size: "7 items · whole-ghar clean",
-      price: 399,
-      mrp: 520,
-      contents: [
-        "Floor cleaner 1 L",
-        "Pital & copper polish",
-        "Tile & tap cleaner",
-        "Glass spray",
-        "Kitchen degreaser",
-        "3 microfibre cloths",
-        "Scrub pads",
-      ],
+      items: ["h-glass", "h-floor", "h-bath", "h-dish", "h-toilet", "h-fresh"],
+      price: 599,
+      line: "Ghat se pehle, diya se pehle. Every room of the ghar, from one box.",
       art: {
         shape: "box",
         body: "#2A0E3D",
@@ -40,336 +342,52 @@ window.SHOP = {
       },
     },
     {
+      id: "kit-home",
+      name: "Home Starter Kit",
+      items: ["h-glass", "h-floor", "h-bath", "h-toilet"],
+      price: 449,
+      tag: "Start here",
+      tint: "#FF6B1A",
+      line: "The four bottles every ghar runs out of first.",
+      art: {
+        shape: "box",
+        body: "#FF9EC4",
+        accent: "#2A0E3D",
+        ink: "#FF9EC4",
+        label: "HOME",
+        sub: "starter kit",
+      },
+    },
+    {
       id: "kit-car",
       name: "Car Care Kit",
-      size: "5 items · one Sunday wash",
-      price: 349,
-      mrp: 449,
+      items: ["c-shampoo", "c-shine", "c-washer", "c-cloth"],
+      price: 479,
       tag: "Sunday special",
-      tint: "#FF6B1A",
-      contents: [
-        "Car shampoo 500 ml",
-        "Dashboard shine",
-        "Glass spray",
-        "2 microfibre cloths",
-        "Wash sponge",
-      ],
-      art: {
-        shape: "box",
-        body: "#2A0E3D",
-        accent: "#FF6B1A",
-        ink: "#2A0E3D",
-        label: "CAR CARE",
-        sub: "5 items",
-      },
-    },
-    {
-      id: "kit-kitchen",
-      name: "Kitchen Degrease Kit",
-      size: "4 items · oil and masala stains",
-      price: 299,
-      mrp: 389,
-      tag: "Bestseller",
-      contents: [
-        "Kitchen degreaser spray",
-        "Dishwash gel 500 ml",
-        "Steel scrub",
-        "2 microfibre cloths",
-      ],
-      art: {
-        shape: "box",
-        body: "#FFD84A",
-        accent: "#2A0E3D",
-        ink: "#FFD84A",
-        label: "KITCHEN",
-        sub: "degrease kit",
-      },
-    },
-    {
-      id: "kit-bath",
-      name: "Bathroom Shine Kit",
-      size: "4 items · tiles, taps, toilet",
-      price: 279,
-      mrp: 359,
-      contents: [
-        "Toilet cleaner 500 ml",
-        "Tile & tap cleaner",
-        "Scrub pads",
-        "Handwash 250 ml",
-      ],
+      line: "A full Sunday wash, inside and out.",
       art: {
         shape: "box",
         body: "#8FD3FF",
         accent: "#2A0E3D",
         ink: "#8FD3FF",
-        label: "BATHROOM",
-        sub: "shine kit",
+        label: "CAR CARE",
+        sub: "4 items",
       },
     },
     {
       id: "kit-bike",
       name: "Bike Kit",
-      size: "3 items · 10-minute wash",
-      price: 199,
-      mrp: 259,
-      tag: "Under ₹200",
-      contents: ["Bike wash 250 ml", "Chrome polish", "Microfibre cloth"],
+      items: ["c-waterless", "c-shine", "c-cloth"],
+      price: 369,
+      tag: "Hostel pick",
+      line: "Ten minutes, no bucket, a bike that looks new.",
       art: {
         shape: "box",
         body: "#7FF2C3",
         accent: "#2A0E3D",
         ink: "#7FF2C3",
         label: "BIKE",
-        sub: "wash kit",
-      },
-    },
-    {
-      id: "kit-hostel",
-      name: "Hostel Room Kit",
-      size: "5 items · one room, one month",
-      price: 249,
-      mrp: 329,
-      tag: "Student pick",
-      contents: [
-        "Floor cleaner 500 ml",
-        "Handwash 250 ml",
-        "Glass spray mini",
-        "2 microfibre cloths",
-        "Scrub pads",
-      ],
-      art: {
-        shape: "box",
-        body: "#FF9EC4",
-        accent: "#2A0E3D",
-        ink: "#FF9EC4",
-        label: "HOSTEL",
-        sub: "room kit",
-      },
-    },
-  ],
-
-  // Singles for "Build your own kit". `short` is used in the kit's size line.
-  singles: [
-    {
-      id: "s-floor",
-      short: "Floor",
-      name: "Floor Cleaner, Lemon",
-      size: "500 ml",
-      price: 69,
-      art: {
-        shape: "bottle",
-        body: "#FFD84A",
-        accent: "#2A0E3D",
-        ink: "#FFD84A",
-        lid: "#2A0E3D",
-        label: "FLOOR",
-        sub: "lemon",
-      },
-    },
-    {
-      id: "s-dish",
-      short: "Dish paste",
-      name: "Dishwash Paste",
-      size: "400 g tub",
-      price: 49,
-      art: {
-        shape: "tub",
-        body: "#7FF2C3",
-        accent: "#2A0E3D",
-        ink: "#7FF2C3",
-        lid: "#2A0E3D",
-        label: "DISH",
-        sub: "paste",
-      },
-    },
-    {
-      id: "s-glass",
-      short: "Glass",
-      name: "Glass Cleaner Spray",
-      size: "250 ml",
-      price: 79,
-      art: {
-        shape: "spray",
-        body: "#8FD3FF",
-        accent: "#2A0E3D",
-        ink: "#8FD3FF",
-        lid: "#2A0E3D",
-        label: "GLASS",
-        sub: "streak-free",
-      },
-    },
-    {
-      id: "s-degrease",
-      short: "Degreaser",
-      name: "Kitchen Degreaser",
-      size: "250 ml spray",
-      price: 89,
-      art: {
-        shape: "spray",
-        body: "#FF6B1A",
-        accent: "#2A0E3D",
-        ink: "#FF6B1A",
-        lid: "#2A0E3D",
-        label: "GREASE",
-        sub: "kitchen",
-      },
-    },
-    {
-      id: "s-toilet",
-      short: "Toilet",
-      name: "Toilet Cleaner",
-      size: "500 ml",
-      price: 75,
-      art: {
-        shape: "bottle",
-        body: "#2A0E3D",
-        accent: "#7FF2C3",
-        ink: "#2A0E3D",
-        lid: "#7FF2C3",
-        label: "TOILET",
-        sub: "thick gel",
-      },
-    },
-    {
-      id: "s-tile",
-      short: "Tile",
-      name: "Tile & Tap Cleaner",
-      size: "500 ml",
-      price: 79,
-      art: {
-        shape: "bottle",
-        body: "#FF9EC4",
-        accent: "#2A0E3D",
-        ink: "#FF9EC4",
-        lid: "#2A0E3D",
-        label: "TILE",
-        sub: "& tap",
-      },
-    },
-    {
-      id: "s-hand",
-      short: "Handwash",
-      name: "Handwash, Neem",
-      size: "250 ml",
-      price: 55,
-      art: {
-        shape: "dropper",
-        body: "#7FF2C3",
-        accent: "#2A0E3D",
-        ink: "#7FF2C3",
-        lid: "#2A0E3D",
-        label: "HAND",
-        sub: "neem",
-      },
-    },
-    {
-      id: "s-pital",
-      short: "Pital polish",
-      name: "Pital & Copper Polish",
-      size: "100 g",
-      price: 79,
-      art: {
-        shape: "jar",
-        body: "#FFB547",
-        accent: "#2A0E3D",
-        ink: "#FFB547",
-        lid: "#2A0E3D",
-        label: "PITAL",
-        sub: "polish",
-      },
-    },
-    {
-      id: "s-cloth",
-      short: "Cloths",
-      name: "Microfibre Cloths",
-      size: "Pack of 2",
-      price: 59,
-      art: {
-        shape: "sachet",
-        body: "#2A0E3D",
-        accent: "#FF6B1A",
-        ink: "#2A0E3D",
-        label: "CLOTH",
-        sub: "2 pack",
-      },
-    },
-    {
-      id: "s-scrub",
-      short: "Scrubs",
-      name: "Scrub Pads",
-      size: "Pack of 3",
-      price: 29,
-      art: {
-        shape: "sachet",
-        body: "#FFD84A",
-        accent: "#2A0E3D",
-        ink: "#FFD84A",
-        label: "SCRUB",
-        sub: "3 pack",
-      },
-    },
-  ],
-
-  // Refill pouches: same liquid, a third cheaper than buying a new bottle.
-  refills: [
-    {
-      id: "r-floor",
-      name: "Floor Cleaner Refill",
-      size: "1 L pouch",
-      price: 79,
-      mrp: 113,
-      art: {
-        shape: "pouch",
-        body: "#FFD84A",
-        accent: "#2A0E3D",
-        ink: "#FFD84A",
-        label: "FLOOR",
-        sub: "1 L refill",
-      },
-    },
-    {
-      id: "r-dish",
-      name: "Dishwash Gel Refill",
-      size: "1 L pouch",
-      price: 69,
-      mrp: 99,
-      art: {
-        shape: "pouch",
-        body: "#FF6B1A",
-        accent: "#2A0E3D",
-        ink: "#FF6B1A",
-        label: "DISH",
-        sub: "1 L refill",
-      },
-    },
-    {
-      id: "r-hand",
-      name: "Handwash Refill",
-      size: "750 ml pouch",
-      price: 49,
-      mrp: 70,
-      art: {
-        shape: "pouch",
-        body: "#2A0E3D",
-        accent: "#7FF2C3",
-        ink: "#2A0E3D",
-        label: "HAND",
-        sub: "750 ml refill",
-      },
-    },
-    {
-      id: "r-glass",
-      name: "Glass Cleaner Refill",
-      size: "500 ml pouch",
-      price: 59,
-      mrp: 85,
-      art: {
-        shape: "pouch",
-        body: "#8FD3FF",
-        accent: "#2A0E3D",
-        ink: "#8FD3FF",
-        label: "GLASS",
-        sub: "500 ml refill",
+        sub: "3 items",
       },
     },
   ],
@@ -387,11 +405,49 @@ window.SHOP = {
 (function (shop) {
   "use strict";
   const singleById = new Map(shop.singles.map((s) => [s.id, s]));
+  const amazon = (name) =>
+    "https://www.amazon.in/s?k=" + encodeURIComponent("Chamak " + name);
+
+  // 0.75 -> "750 ml", 1.25 -> "1.25 L", 20.75 -> "20 L" (rounded down, never oversold).
+  shop.volume = (litres) =>
+    litres < 1
+      ? `${Math.round(litres * 1000)} ml`
+      : litres >= 10
+        ? `${Math.floor(litres)} L`
+        : `${+litres.toFixed(2)} L`;
+
+  // What a single makes once mixed, and what each litre of that costs.
+  shop.singles.forEach((s) => {
+    s.amazon ||= amazon(s.name);
+    if (s.conc) {
+      s.makes = (s.ml * s.conc) / 1000;
+      s.perLitre = Math.round(s.price / s.makes);
+      s.size = `${s.ml} ml · ${s.conc}X concentrate`;
+      // Small yields read better per 100 ml than as a large per-litre number.
+      s.yield =
+        s.makes < 1
+          ? `Makes ${shop.volume(s.makes)} · ₹${Math.round(s.price / (s.makes * 10))} per 100 ml`
+          : `Makes ${shop.volume(s.makes)} · ₹${s.perLitre} per litre`;
+    } else {
+      s.size = s.pack || `${s.ml} ml · ready to use`;
+      s.yield = s.pack ? "Washable and reusable" : "Ready to use, no mixing";
+    }
+  });
+
+  shop.kits.forEach((k) => {
+    const items = k.items.map((id) => singleById.get(id));
+    const litres = items.reduce((sum, i) => sum + (i.makes || 0), 0);
+    k.contents = items.map((i) => i.name);
+    k.mrp = items.reduce((sum, i) => sum + i.price, 0);
+    k.makes = litres;
+    k.size = `${items.length} items · makes ${shop.volume(litres)}`;
+    k.amazon ||= amazon(k.name);
+  });
 
   shop.tierFor = (n) =>
     shop.tiers.reduce((best, t) => (n >= t.min ? t : best), { min: 0, off: 0 });
 
-  // Turns a list of single ids into a cart product. Unknown and repeated ids are dropped.
+  // Turns a list of single ids into a cart product. Repeated ids are dropped.
   shop.makeKit = (ids) => {
     const list = [...new Set(ids)].filter((id) => singleById.has(id)).sort();
     if (list.length < shop.kitMin) return null;
@@ -417,13 +473,31 @@ window.SHOP = {
     };
   };
 
-  shop.loadKits = () => {
+  const write = (kits) => {
     try {
-      const saved = JSON.parse(localStorage.getItem(shop.kitKey));
-      return Array.isArray(saved) ? saved.filter(Array.isArray) : [];
+      localStorage.setItem(shop.kitKey, JSON.stringify(kits));
     } catch {
-      return [];
+      /* private mode: kits live for this page only */
     }
+  };
+
+  // Saved kits from older catalogues may name products that no longer exist: drop those kits whole.
+  shop.loadKits = () => {
+    let saved;
+    try {
+      saved = JSON.parse(localStorage.getItem(shop.kitKey));
+    } catch {
+      saved = null;
+    }
+    if (!Array.isArray(saved)) return [];
+    const valid = saved.filter(
+      (k) =>
+        Array.isArray(k) &&
+        k.length >= shop.kitMin &&
+        k.every((id) => singleById.has(id)),
+    );
+    if (valid.length !== saved.length) write(valid);
+    return valid;
   };
 
   // Keeps the 12 most recent kits; older ones would only matter for very old carts.
@@ -431,14 +505,7 @@ window.SHOP = {
     const kit = shop.makeKit(ids);
     if (!kit) return null;
     const rest = shop.loadKits().filter((k) => shop.makeKit(k)?.id !== kit.id);
-    try {
-      localStorage.setItem(
-        shop.kitKey,
-        JSON.stringify([...rest, kit.ids].slice(-12)),
-      );
-    } catch {
-      /* private mode: the kit lives for this page only */
-    }
+    write([...rest, kit.ids].slice(-12));
     shop.addProduct(kit);
     return kit;
   };
@@ -449,7 +516,7 @@ window.SHOP = {
 
   // The cart only knows one list, so every sellable thing joins it,
   // including custom kits saved on earlier visits (otherwise the cart drops them on reload).
-  shop.products = [...shop.kits, ...shop.singles, ...shop.refills];
+  shop.products = [...shop.kits, ...shop.singles];
   shop.loadKits().forEach((ids) => {
     const kit = shop.makeKit(ids);
     if (kit) shop.addProduct(kit);
