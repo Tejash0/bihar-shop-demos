@@ -7,6 +7,7 @@ Everything must stay free: static files only, no payment gateway, no paid hostin
 
 - Test: `npm test` (runs `node --test`, no dependencies)
 - Serve locally: `npm run serve`, then open http://localhost:8080/
+- Before every deploy: `npm run stamp` (versions CSS/JS links so browsers never mix a new page with a cached old stylesheet)
 
 ## Layout
 
@@ -23,3 +24,4 @@ Everything must stay free: static files only, no payment gateway, no paid hostin
 - All products, prices and reviews are invented samples; every footer says so.
 - Supplement copy must not claim to cure or treat disease.
 - Paths are relative so the site works from any GitHub Pages sub-path.
+- Give every inline `<svg>` a `width` attribute so it stays icon-sized even if CSS fails to load.
