@@ -1,4 +1,4 @@
-// Chamak catalogue and shop settings. Edit prices, products, Amazon links or the WhatsApp number here.
+// Chamak catalogue and shop settings. Edit prices, products, store links or the WhatsApp number here.
 // Loaded before app.js and before the cart starts, so saved custom kits can join the catalogue.
 // `conc` is the concentrate strength: 50 means 1 part concentrate makes 50 parts of ready cleaner.
 // `ml` is the bottle size; `makes` (litres) is worked out from both. Leave `conc` out for ready-to-use items.
@@ -9,7 +9,7 @@ window.SHOP = {
   delivery: { fee: 25, freeAbove: 249 },
   pincodes: null, // null = accept any 6-digit pincode
   areaNote:
-    "Next-day delivery anywhere in Patna if you order by 8 p.m. Outside Patna, buy on Amazon.",
+    "Next-day delivery anywhere in Patna if you order by 8 p.m. Outside Patna, buy on Amazon or Flipkart.",
   eta: "in 1 day",
   orderPrefix: "CH",
   addLabel: "Add",
@@ -398,6 +398,16 @@ window.SHOP = {
     { min: 6, off: 0.15 },
     { min: 8, off: 0.2 },
   ],
+  // Online stores shown in the "Buy online" panel, in display order.
+  stores: [
+    { id: "amazon", name: "Amazon", group: "india", search: (q) => `https://www.amazon.in/s?k=${q}` },
+    { id: "flipkart", name: "Flipkart", group: "india", search: (q) => `https://www.flipkart.com/search?q=${q}` },
+    { id: "meesho", name: "Meesho", group: "india", search: (q) => `https://www.meesho.com/search?q=${q}` },
+    { id: "jiomart", name: "JioMart", group: "india", search: (q) => `https://www.jiomart.com/search/${q}` },
+    { id: "blinkit", name: "Blinkit", group: "quick", search: (q) => `https://blinkit.com/s/?q=${q}` },
+    { id: "zepto", name: "Zepto", group: "quick", search: (q) => `https://www.zeptonow.com/search?query=${q}` },
+    { id: "instamart", name: "Swiggy Instamart", group: "quick", search: (q) => `https://www.swiggy.com/instamart/search?query=${q}` },
+  ],
   kitMin: 3, // smallest kit the builder will add to the bag
   kitKey: "chamak-kits", // localStorage key for saved custom kits
 };
@@ -405,8 +415,14 @@ window.SHOP = {
 (function (shop) {
   "use strict";
   const singleById = new Map(shop.singles.map((s) => [s.id, s]));
-  const amazon = (name) =>
-    "https://www.amazon.in/s?k=" + encodeURIComponent("Chamak " + name);
+  // Until real listings exist, each store button opens that store's search for the product.
+  // To link a real listing, set it on the product: links: { amazon: "https://www.amazon.in/dp/..." }.
+  const linksFor = (p) => {
+    const q = encodeURIComponent(`${shop.name} ${p.name}`);
+    const links = {};
+    shop.stores.forEach((st) => (links[st.id] = p.links?.[st.id] || st.search(q)));
+    return links;
+  };
 
   // 0.75 -> "750 ml", 1.25 -> "1.25 L", 20.75 -> "20 L" (rounded down, never oversold).
   shop.volume = (litres) =>
@@ -418,7 +434,7 @@ window.SHOP = {
 
   // What a single makes once mixed, and what each litre of that costs.
   shop.singles.forEach((s) => {
-    s.amazon ||= amazon(s.name);
+    s.links = linksFor(s);
     if (s.conc) {
       s.makes = (s.ml * s.conc) / 1000;
       s.perLitre = Math.round(s.price / s.makes);
@@ -441,7 +457,7 @@ window.SHOP = {
     k.mrp = items.reduce((sum, i) => sum + i.price, 0);
     k.makes = litres;
     k.size = `${items.length} items · makes ${shop.volume(litres)}`;
-    k.amazon ||= amazon(k.name);
+    k.links = linksFor(k);
   });
 
   shop.tierFor = (n) =>

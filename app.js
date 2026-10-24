@@ -12,13 +12,17 @@
     check:
       '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>',
     drop: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11Z"/></svg>',
+    close: '<svg width="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+    out: '<svg width="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
   };
 
-  // Add (pay on delivery) plus the secondary Amazon link, side by side.
+  // Add (pay on delivery) plus the secondary "Buy online" button, side by side.
+  const onlineBtn = (p) =>
+    `<button class="amz" type="button" data-online="${p.id}" aria-haspopup="dialog">Buy online</button>`;
   const buyPair = (p, cls = "") =>
     `<div class="buy-pair">
       <div data-buy="${p.id}"${cls ? ` data-buy-class="${cls}"` : ""}></div>
-      <a class="amz" href="${p.amazon}" target="_blank" rel="noopener" aria-label="Buy ${p.name} on Amazon (opens in a new tab)">Buy on Amazon</a>
+      ${onlineBtn(p)}
     </div>`;
 
   // ---------- hero ----------
@@ -33,13 +37,51 @@
     .join("");
   document.querySelector(".hk-buy .price").innerHTML =
     `<b>${rupees(hero.price)}</b><s>${rupees(hero.mrp)}</s><span>Save ${rupees(hero.mrp - hero.price)}</span>`;
-  document.querySelectorAll("[data-amazon]").forEach((a) => {
-    const p = byId(a.dataset.amazon);
-    a.href = p.amazon;
-    a.setAttribute(
-      "aria-label",
-      `Buy ${p.name} on Amazon (opens in a new tab)`,
-    );
+
+  // ---------- "Buy online": one shared panel listing every store for the chosen product ----------
+  const storeGroups = [
+    { id: "india", label: "Delivered across India" },
+    { id: "quick", label: "Quick delivery apps, where they deliver" },
+  ];
+  const sheet = document.createElement("dialog");
+  sheet.className = "stores";
+  sheet.setAttribute("aria-labelledby", "stores-title");
+  document.body.appendChild(sheet);
+
+  function openStores(p) {
+    sheet.innerHTML = `
+      <div class="stores-head">
+        <div class="stores-pack">${pack(p)}</div>
+        <div><h2 id="stores-title">Buy online</h2><p>${p.name}</p></div>
+        <button class="stores-x" type="button" aria-label="Close">${icon.close}</button>
+      </div>
+      ${storeGroups
+        .map(
+          (g) => `<h3>${g.label}</h3><ul>${shop.stores
+            .filter((st) => st.group === g.id)
+            .map(
+              (st) =>
+                `<li><a href="${p.links[st.id]}" target="_blank" rel="noopener"><span>${st.name}</span>${icon.out}<span class="sr">(opens in a new tab)</span></a></li>`,
+            )
+            .join("")}</ul>`,
+        )
+        .join("")}
+      <p class="stores-note">In Patna? <button type="button" class="stores-add">Add to bag and pay on delivery</button></p>`;
+    sheet.querySelector(".stores-x").onclick = () => sheet.close();
+    sheet.querySelector(".stores-add").onclick = () => {
+      cart.add(p.id);
+      sheet.close();
+      cart.drawer.open();
+    };
+    sheet.showModal();
+  }
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-online]");
+    if (b) openStores(byId(b.dataset.online));
+  });
+  // A click on the dimmed backdrop (outside the panel box) closes it.
+  sheet.addEventListener("click", (e) => {
+    if (e.target === sheet) sheet.close();
   });
 
   // ---------- shop: category tabs over the grid ----------

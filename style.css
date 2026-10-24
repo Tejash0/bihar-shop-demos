@@ -506,7 +506,7 @@ h3 {
   }
 }
 
-/* ---------- buy pair: Add (pay on delivery) + Buy on Amazon ---------- */
+/* ---------- buy pair: Add (pay on delivery) + Buy online ---------- */
 .buy-pair {
   display: flex;
   flex-wrap: wrap;
@@ -533,6 +533,8 @@ h3 {
   font-size: 14px;
   white-space: nowrap;
   text-decoration: none;
+  background: none;
+  font-family: inherit;
   transition: background 0.2s;
 }
 .amz:hover {
@@ -1565,4 +1567,134 @@ body:has(.cart-strip.is-on) .tray {
   .slot.is-new {
     animation: none;
   }
+}
+
+/* ---------- "Buy online" panel: bottom sheet on phones, centred card on desktop ---------- */
+.stores {
+  width: 100%;
+  max-width: 440px;
+  max-height: 88vh;
+  margin: auto auto 0;
+  padding: 20px 20px 24px;
+  border: 0;
+  border-radius: 24px 24px 0 0;
+  background: var(--cream);
+  color: var(--plum);
+  box-shadow: 0 -20px 60px -20px rgb(42 14 61 / 0.5);
+  overflow-y: auto;
+}
+.stores[open] {
+  animation: sheet-up 0.4s var(--ease);
+}
+.stores::backdrop {
+  background: rgb(42 14 61 / 0.55);
+}
+@keyframes sheet-up {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}
+@media (min-width: 640px) {
+  .stores {
+    margin: auto;
+    border-radius: 24px;
+  }
+}
+.stores-head {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 2px solid rgb(42 14 61 / 0.12);
+}
+.stores-pack {
+  background: #fff;
+  border-radius: 14px;
+  padding: 4px;
+}
+.stores-head h2 {
+  font-size: 22px;
+}
+.stores-head p {
+  font-size: 14px;
+  font-weight: 600;
+}
+.stores-x {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--plum);
+  border-radius: 50%;
+  background: none;
+  color: var(--plum);
+}
+.stores-x svg,
+.stores li svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.stores h3 {
+  margin: 18px 0 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  color: rgb(42 14 61 / 0.8);
+}
+.stores ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.stores li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 14px;
+  background: #fff;
+  border: 2px solid rgb(42 14 61 / 0.14);
+  color: var(--plum);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.stores li a:hover {
+  border-color: var(--plum);
+  background: var(--mint);
+}
+.stores-note {
+  margin-top: 18px;
+  font-size: 14px;
+}
+.stores-add {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--plum);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
