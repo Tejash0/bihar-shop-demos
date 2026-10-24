@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chamak - Chamka do. Cleaning kits for every job</title>
+  <meta name="description" content="Ready cleaning kits for kitchen, bathroom, car and bike, a Chhath and Diwali deep-clean kit, 30% cheaper refills and bulk orders. Next-day delivery in Patna, pay on delivery.">
+  <meta name="theme-color" content="#FF6B1A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Familjen+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../shared/base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="spark" viewBox="0 0 24 24"><path d="M12 0C12.9 7.1 16.9 11.1 24 12C16.9 12.9 12.9 16.9 12 24C11.1 16.9 7.1 12.9 0 12C7.1 11.1 11.1 7.1 12 0Z"/></symbol>
+  </svg>
+  <a class="skip" href="#kits">Skip to kits</a>
+
+  <div class="offer" aria-label="Offers">
+    <div class="offer-track">
+      <span>Chhath kit at ₹399, save ₹121</span><span>Build a kit, get up to 20% off</span><span>Refills 30% cheaper</span><span>Free delivery above ₹249</span><span>Pay cash or UPI at the door</span>
+      <span aria-hidden="true">Chhath kit at ₹399, save ₹121</span><span aria-hidden="true">Build a kit, get up to 20% off</span><span aria-hidden="true">Refills 30% cheaper</span><span aria-hidden="true">Free delivery above ₹249</span><span aria-hidden="true">Pay cash or UPI at the door</span>
+    </div>
+  </div>
+
+  <header class="top">
+    <a class="logo" href="index.html" aria-label="Chamak home">chamak<svg class="logo-spark" aria-hidden="true"><use href="#spark"/></svg></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#kits">Kits</a>
+      <a href="#build">Build a kit</a>
+      <a href="#refills">Refills</a>
+      <a href="#bulk">Bulk</a>
+    </nav>
+    <button class="bag" type="button" data-open-cart aria-label="Open bag">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l1 13H5L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      <span class="bag-count" data-cart-count hidden>0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Chamka<br>do.</h1>
+        <p class="hero-lede">Kits for every cleaning job, from a Chhath-ready ghar to a Sunday car wash. <b>Sab kuch ek dabbe mein.</b></p>
+      </div>
+
+      <div class="hero-stage" aria-hidden="true">
+        <svg class="spark s1"><use href="#spark"/></svg>
+        <svg class="spark s2"><use href="#spark"/></svg>
+        <svg class="spark s3"><use href="#spark"/></svg>
+        <div class="stage-pack sp-back-l" data-pack="s-pital"></div>
+        <div class="stage-pack sp-back-r" data-pack="s-glass"></div>
+        <div class="stage-pack sp-main" data-pack="kit-chhath"></div>
+        <div class="stage-pack sp-front" data-pack="s-floor"></div>
+        <div class="sticker"><span>save</span><b>₹121</b></div>
+      </div>
+
+      <article class="hero-kit" aria-labelledby="hk-title">
+        <h2 id="hk-title">Chhath &amp; Diwali Deep-Clean Kit</h2>
+        <p class="hk-line">Pital ke bartan se rasoi ki chimney tak. Seven things you need before the ghat and the diya, in one box.</p>
+        <ul class="hk-list"></ul>
+        <div class="hk-buy">
+          <p class="price"><b>₹399</b><s>₹520</s><span>23% off</span></p>
+          <div data-buy="kit-chhath"></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="kits" id="kits" aria-labelledby="kits-title">
+      <div class="sec-head">
+        <h2 id="kits-title">Ek kaam,<br>ek kit.</h2>
+        <p>Every kit is put together for one job, so you don’t buy a big bottle you’ll never finish. Kits start at ₹199.</p>
+      </div>
+      <ul class="kit-grid"></ul>
+    </section>
+
+    <section class="build" id="build" aria-labelledby="build-title">
+      <div class="build-head">
+        <h2 id="build-title">Apna kit<br>banao.</h2>
+        <p>Pick what your ghar actually needs. The more you add, the more you save.</p>
+        <ol class="tier-key">
+          <li><b>4+</b> items <span>10% off</span></li>
+          <li><b>6+</b> items <span>15% off</span></li>
+          <li><b>8+</b> items <span>20% off</span></li>
+        </ol>
+      </div>
+      <div class="build-body">
+        <ul class="picks" aria-label="Products you can add to your kit"></ul>
+        <aside class="tray" aria-labelledby="tray-title">
+          <h3 id="tray-title">Your kit</h3>
+          <ul class="tray-slots" aria-live="polite"></ul>
+          <div class="meter" aria-hidden="true">
+            <div class="meter-fill"></div>
+            <span class="meter-notch" style="--at:4" data-label="10%"></span>
+            <span class="meter-notch" style="--at:6" data-label="15%"></span>
+            <span class="meter-notch" style="--at:8" data-label="20%"></span>
+          </div>
+          <p class="tray-hint" aria-live="polite"></p>
+          <p class="tray-price"></p>
+          <button class="tray-add" type="button" disabled>Add kit to bag</button>
+          <button class="tray-clear" type="button" hidden>Start over</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="refills" id="refills" aria-labelledby="refill-title">
+      <div class="refill-head">
+        <p class="big-off" aria-hidden="true">30%</p>
+        <div>
+          <h2 id="refill-title">Refill karo, 30% bachao.</h2>
+          <p>Keep the bottle, buy the pouch. Same liquid, a third cheaper, and one less plastic bottle in the kooda.</p>
+        </div>
+      </div>
+      <ul class="refill-row"></ul>
+    </section>
+
+    <section class="bulk" id="bulk" aria-labelledby="bulk-title">
+      <div class="bulk-copy">
+        <h2 id="bulk-title">Shop, hostel, coaching? Bulk mein lo.</h2>
+        <p>We supply kirana shops, hostels, coaching centres and offices across Patna with 5 L cans and monthly kits at wholesale rates.</p>
+        <ul class="bulk-facts">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v13H4z"/><path d="M4 7l2-3h12l2 3M9 11h6"/></svg>5 L cans from ₹299</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Monthly refill, same date</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v16l-5-3-5 3z"/></svg>GST bill on request</li>
+        </ul>
+      </div>
+      <form class="bulk-form" novalidate>
+        <h3>Get a bulk quote</h3>
+        <label>Business type
+          <select name="type" required>
+            <option value="">Choose one</option>
+            <option>Kirana or general store</option>
+            <option>Hostel or PG</option>
+            <option>Coaching centre</option>
+            <option>Office</option>
+            <option>Hotel or restaurant</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label>Roughly how much a month?
+          <select name="qty" required>
+            <option value="">Choose one</option>
+            <option>10-25 litres</option>
+            <option>25-50 litres</option>
+            <option>50-100 litres</option>
+            <option>100+ litres</option>
+          </select>
+        </label>
+        <label>Your name<input name="name" autocomplete="name" required></label>
+        <label>Mobile number<input name="phone" inputmode="numeric" autocomplete="tel" placeholder="10-digit number" required></label>
+        <button type="submit">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.1L4 20Z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg>
+          Send on WhatsApp
+        </button>
+        <p class="bulk-note" role="status" aria-live="polite">Opens WhatsApp with your details filled in. We reply within a working day.</p>
+      </form>
+    </section>
+
+    <section class="reviews" id="reviews" aria-labelledby="rev-title">
+      <h2 id="rev-title">Patna ne chamkaya.</h2>
+      <ul class="rev-list">
+        <li class="rev r1">
+          <blockquote>“Ordered the Chhath kit on Monday, it came Tuesday morning. Pital ke lote itne chamke ki mummy ne poocha kahan se laaye.”</blockquote>
+          <p><b>Priya S.</b> · Kankarbagh</p>
+        </li>
+        <li class="rev r2">
+          <blockquote>“We run a coaching centre with six classrooms. Their monthly floor cleaner cans cost us less than the shop near Musallahpur.”</blockquote>
+          <p><b>Rakesh M.</b> · Coaching owner, Musallahpur</p>
+        </li>
+        <li class="rev r3">
+          <blockquote>“Made my own kit with 8 things for the hostel room, got 20% off. Paid UPI at the gate.”</blockquote>
+          <p><b>Ankit K.</b> · Boys hostel, Boring Road</p>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-cta">
+      <svg class="spark foot-spark" aria-hidden="true"><use href="#spark"/></svg>
+      <h2>Kuch poochna hai? WhatsApp karo.</h2>
+      <p>Real people, 9 a.m. to 9 p.m. Hindi or English, dono chalega.</p>
+      <a class="btn" href="https://wa.me/919999999999?text=Hi%20Chamak!" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.1L4 20Z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+    <div class="foot-meta">
+      <a class="logo" href="index.html">chamak<svg class="logo-spark" aria-hidden="true"><use href="#spark"/></svg></a>
+      <p>Demo website. Products, prices and reviews are samples for a business pitch.</p>
+      <p><a href="../../index.html">Back to all demos</a></p>
+    </div>
+  </footer>
+
+  <button class="cart-strip" type="button" data-cart-bar data-open-cart>
+    <span><b data-cart-count>0</b> in bag</span><span>View bag · <b data-cart-total>₹0</b></span>
+  </button>
+
+  <script src="../../shared/packs.js"></script>
+  <script src="../../shared/cart.js"></script>
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
